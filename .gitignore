@@ -15,6 +15,7 @@ htmlcov/
 coverage.xml
 *.sqlite
 *.sqlite3
+*.db
 
 # =========================
 # Environment / secrets
