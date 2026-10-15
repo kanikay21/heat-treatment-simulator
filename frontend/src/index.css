@@ -6,45 +6,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Color Palette - Metallurgy Dark Theme */
-  --bg-darkest: #07090e;
-  --bg-darker: #0d121c;
-  --bg-card: rgba(18, 24, 38, 0.75);
-  --bg-card-hover: rgba(28, 38, 58, 0.85);
-  --bg-card-solid: #131b2c;
-  --bg-input: rgba(10, 14, 23, 0.8);
+  /* Color Palette - Custom Earth & Mineral Patina Theme */
+  /* Palette: #432323 (Mahogany) | #2F5755 (Deep Spruce) | #5A9690 (Sage Patina) | #E0D9D9 (Alabaster Mist) */
+  --bg-darkest: #1a0f0f;
+  --bg-darker: #221414;
+  --bg-card: rgba(67, 35, 35, 0.48);
+  --bg-card-hover: rgba(47, 87, 85, 0.38);
+  --bg-card-solid: #281919;
+  --bg-input: rgba(32, 19, 19, 0.88);
 
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.15);
-  --border-glow: rgba(249, 115, 22, 0.4);
+  --border-subtle: rgba(224, 217, 217, 0.12);
+  --border-medium: rgba(90, 150, 144, 0.35);
+  --border-glow: rgba(90, 150, 144, 0.55);
 
   /* Thermal & Phase Accents */
-  --heat-orange: #f97316;
-  --heat-amber: #f59e0b;
-  --heat-red: #ef4444;
-  --heat-glow: 0 0 20px rgba(249, 115, 22, 0.35);
+  --heat-orange: #5A9690;         /* Primary Accent: Sage Patina */
+  --heat-amber: #2F5755;          /* Secondary Accent: Deep Spruce */
+  --heat-red: #c05858;            /* Accent Red: Warm Mahogany Crimson */
+  --heat-glow: 0 0 20px rgba(90, 150, 144, 0.35);
   
-  --phase-ferrite: #38bdf8;       /* Alpha Ferrite - Ice Blue */
-  --phase-austenite: #a855f7;     /* Austenite - Royal Violet */
-  --phase-cementite: #f43f5e;     /* Cementite - Hard Crimson */
-  --phase-pearlite: #10b981;      /* Pearlite - Emerald Colony */
-  --phase-martensite: #ec4899;    /* Martensite - Sharp Magenta */
-  --phase-bainite: #eab308;       /* Bainite - Golden Sheaf */
-  --phase-liquid: #fb923c;        /* Liquid - Molten Orange */
-  --phase-delta: #64748b;         /* Delta - Slate */
+  --phase-ferrite: #5A9690;       /* Alpha Ferrite - Sage Patina */
+  --phase-austenite: #8e788c;     /* Austenite - Muted Rose Violet */
+  --phase-cementite: #c05858;     /* Cementite - Mahogany Crimson */
+  --phase-pearlite: #2F5755;      /* Pearlite - Deep Spruce Slate */
+  --phase-martensite: #bf6d7c;    /* Martensite - Rosewood */
+  --phase-bainite: #ca9e76;       /* Bainite - Warm Ochre */
+  --phase-liquid: #c67966;        /* Liquid - Terracotta */
+  --phase-delta: #738c89;         /* Delta - Slate Green */
 
   /* Text Colors */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-highlight: #fdba74;
+  --text-primary: #E0D9D9;        /* Pale Mist */
+  --text-secondary: #aba0a0;      /* Muted Parchment */
+  --text-muted: #796c6c;          /* Deep Stone */
+  --text-highlight: #5A9690;      /* Patina Highlight */
 
   /* Elevation & Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
-  --shadow-neon-orange: 0 0 25px rgba(249, 115, 22, 0.25);
-  --shadow-neon-cyan: 0 0 25px rgba(56, 189, 248, 0.25);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.65);
+  --shadow-neon-orange: 0 0 25px rgba(90, 150, 144, 0.3);
+  --shadow-neon-cyan: 0 0 25px rgba(47, 87, 85, 0.4);
 
   /* Transitions */
   --transition-fast: 0.15s ease;
@@ -66,9 +67,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(249, 115, 22, 0.12), transparent),
-    radial-gradient(ellipse 60% 40% at 85% 60%, rgba(56, 189, 248, 0.06), transparent),
-    linear-gradient(180deg, #07090e 0%, #0d121c 100%);
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(90, 150, 144, 0.16), transparent),
+    radial-gradient(ellipse 60% 40% at 85% 60%, rgba(67, 35, 35, 0.38), transparent),
+    linear-gradient(180deg, #180d0d 0%, #241414 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
@@ -86,11 +87,11 @@ code, kbd, samp, pre, .font-mono {
   background: var(--bg-darkest);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #2F5755;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #5A9690;
 }
 
 /* Layout Container */
@@ -109,7 +110,7 @@ code, kbd, samp, pre, .font-mono {
   align-items: center;
   justify-content: space-between;
   padding: 0.85rem 2rem;
-  background: rgba(7, 9, 14, 0.85);
+  background: rgba(26, 15, 15, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
@@ -124,12 +125,12 @@ code, kbd, samp, pre, .font-mono {
 .brand-icon {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+  background: linear-gradient(135deg, #5A9690 0%, #2F5755 100%);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 16px rgba(249, 115, 22, 0.4);
+  box-shadow: 0 0 16px rgba(90, 150, 144, 0.45);
   color: #fff;
 }
 
@@ -137,7 +138,7 @@ code, kbd, samp, pre, .font-mono {
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  background: linear-gradient(180deg, #E0D9D9 0%, #5A9690 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -153,7 +154,7 @@ code, kbd, samp, pre, .font-mono {
 .nav-tabs {
   display: flex;
   gap: 0.5rem;
-  background: rgba(18, 24, 38, 0.6);
+  background: rgba(47, 87, 85, 0.22);
   padding: 0.25rem;
   border-radius: 10px;
   border: 1px solid var(--border-subtle);
@@ -176,14 +177,14 @@ code, kbd, samp, pre, .font-mono {
 
 .nav-tab:hover {
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(224, 217, 217, 0.06);
 }
 
 .nav-tab.active {
-  color: #fff;
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.25), rgba(239, 68, 68, 0.15));
-  border: 1px solid rgba(249, 115, 22, 0.4);
-  box-shadow: 0 0 12px rgba(249, 115, 22, 0.2);
+  color: #E0D9D9;
+  background: linear-gradient(135deg, rgba(90, 150, 144, 0.32), rgba(47, 87, 85, 0.3));
+  border: 1px solid rgba(90, 150, 144, 0.55);
+  box-shadow: 0 0 14px rgba(90, 150, 144, 0.25);
 }
 
 .header-status {
@@ -316,11 +317,11 @@ code, kbd, samp, pre, .font-mono {
 }
 
 .steel-pill.active {
-  background: rgba(249, 115, 22, 0.15);
-  border-color: rgba(249, 115, 22, 0.5);
-  color: #fb923c;
+  background: rgba(90, 150, 144, 0.22);
+  border-color: rgba(90, 150, 144, 0.6);
+  color: #5A9690;
   font-weight: 600;
-  box-shadow: 0 0 10px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 0 10px rgba(90, 150, 144, 0.25);
 }
 
 /* Dual Sliders */
@@ -375,7 +376,7 @@ input[type="range"] {
   appearance: none;
   width: 100%;
   height: 6px;
-  background: #1e293b;
+  background: #2b1d1d;
   border-radius: 3px;
   outline: none;
   cursor: pointer;
@@ -387,8 +388,8 @@ input[type="range"]::-webkit-slider-thumb {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 10px rgba(249, 115, 22, 0.6);
+  background: #E0D9D9;
+  box-shadow: 0 0 10px rgba(90, 150, 144, 0.6);
   border: 2px solid var(--heat-orange);
   cursor: grab;
   transition: transform 0.1s ease;
@@ -929,7 +930,7 @@ input[type="range"]::-webkit-slider-thumb:active {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(56, 189, 248, 0.05));
+  background: linear-gradient(135deg, rgba(90, 150, 144, 0.12), rgba(47, 87, 85, 0.08));
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
 }
@@ -954,17 +955,17 @@ input[type="range"]::-webkit-slider-thumb:active {
   font-size: 0.825rem;
   font-weight: 600;
   color: #fff;
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: linear-gradient(135deg, #5A9690 0%, #2F5755 100%);
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 4px 12px rgba(90, 150, 144, 0.3);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .btn-theory:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
+  box-shadow: 0 6px 16px rgba(90, 150, 144, 0.45);
 }
 
 /* Modal Overlay */

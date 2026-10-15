@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Flame, Compass, GitMerge, Activity, BarChart2, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import ExplorerPage from './pages/ExplorerPage';
+import HeatTreatmentPage from './pages/HeatTreatmentPage';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('phase_diagram');
@@ -89,20 +90,7 @@ export default function App() {
       {/* Active Tab View */}
       {activeTab === 'phase_diagram' && <ExplorerPage />}
 
-      {activeTab === 'heat_treatment' && (
-        <div className="main-content" style={{ textAlign: 'center', padding: '5rem 2rem' }}>
-          <div className="glass-panel" style={{ maxWidth: 650, margin: '0 auto', padding: '3rem 2rem' }}>
-            <Activity size={48} color="var(--heat-orange)" style={{ marginBottom: '1rem' }} />
-            <h2 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>Heat Treatment Cycle & TTT Simulator</h2>
-            <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-              Next step in your build order: Input austenitizing temperature, quench cooling rates (water, oil, air), and tempering profiles with CCT/TTT transformation overlays.
-            </p>
-            <button className="btn-theory" style={{ margin: '0 auto' }} onClick={() => setActiveTab('phase_diagram')}>
-              Return to Phase Diagram Explorer
-            </button>
-          </div>
-        </div>
-      )}
+      {activeTab === 'heat_treatment' && <HeatTreatmentPage />}
 
       {activeTab === 'jominy' && (
         <div className="main-content" style={{ textAlign: 'center', padding: '5rem 2rem' }}>

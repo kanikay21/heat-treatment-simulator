@@ -10,9 +10,9 @@ import math
 from typing import Any
 
 
-# ---------------------------------------------------------------------------
+
 # Invariant / Key Reference Points in the Fe-Fe3C System (wt% C, Temp °C)
-# ---------------------------------------------------------------------------
+
 INVARIANT_POINTS = {
     "A": {"C": 0.000, "T": 1538.0, "name": "Pure Fe Melting Point (Delta)"},
     "N": {"C": 0.000, "T": 1394.0, "name": "Delta to Gamma Fe Transition"},
@@ -43,9 +43,9 @@ T_PERITECTIC = 1495.0
 T_CURIE = 770.0
 
 
-# ---------------------------------------------------------------------------
+
 # Boundary Curve Functions
-# ---------------------------------------------------------------------------
+
 
 def temp_a3(c: float) -> float:
     """A3 line (GS curve): Ferrite/Austenite upper boundary for hypoeutectoid steel.

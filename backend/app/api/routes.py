@@ -3,12 +3,18 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.database import get_db
+from app.engine.heat_treatment import generate_ttt_diagram, simulate_thermal_cycle
 from app.engine.phase_diagram import (
     calculate_alloy_critical_temperatures,
     calculate_lever_rule,
     generate_phase_diagram_boundaries,
 )
 from app.models.steel import Steel
+from app.schemas.heat_treatment import (
+    ThermalCycleRequest,
+    ThermalCycleResponse,
+    TTTDiagramResponse,
+)
 from app.schemas.phase_diagram import (
     LeverRuleRequest,
     LeverRuleResponse,
@@ -100,3 +106,60 @@ def get_steel_phase_diagram(steel_id: int, db: Session = Depends(get_db)) -> dic
         "equilibrium_room_temp": room_temp_analysis,
         "austenitizing_recommended_temp_C": rec_aust_temp,
     }
+
+
+@router.get("/steels/{steel_id}/ttt", response_model=TTTDiagramResponse)
+def get_steel_ttt_diagram(steel_id: int, db: Session = Depends(get_db)) -> dict:
+    """Returns parametric TTT transformation curves (pearlite/bainite C-curves, Ms, Mf, Ac1, Ac3)
+    tailored to the steel grade composition.
+    """
+    steel = db.query(Steel).filter(Steel.id == steel_id).first()
+    if steel is None:
+        raise HTTPException(status_code=404, detail="Steel not found")
+
+    return generate_ttt_diagram(
+        steel_id=steel.id,
+        steel_name=steel.name,
+        c=steel.C,
+        mn=steel.Mn,
+        si=steel.Si,
+        cr=steel.Cr,
+        ni=steel.Ni,
+        mo=steel.Mo,
+    )
+
+
+@router.post("/heat-treatment/simulate", response_model=ThermalCycleResponse)
+def simulate_cycle(payload: ThermalCycleRequest, db: Session = Depends(get_db)) -> dict:
+    """Simulates a complete thermal heat treatment cycle (Heating -> Soak -> Quench / Hold -> Temper)
+    and predicts transformation kinetics, phase fractions, and hardness.
+    """
+    steel = db.query(Steel).filter(Steel.id == payload.steel_id).first()
+    if steel is None:
+        raise HTTPException(status_code=404, detail="Steel not found")
+
+    composition = {
+        "C": steel.C,
+        "Mn": steel.Mn,
+        "Si": steel.Si,
+        "Cr": steel.Cr,
+        "Ni": steel.Ni,
+        "Mo": steel.Mo,
+    }
+
+    return simulate_thermal_cycle(
+        steel_id=steel.id,
+        steel_name=steel.name,
+        composition=composition,
+        austenitizing_temp_C=payload.austenitizing_temp_C,
+        soak_time_min=payload.soak_time_min,
+        quench_medium=payload.quench_medium,
+        custom_cooling_rate=payload.custom_cooling_rate,
+        enable_isothermal_hold=payload.enable_isothermal_hold,
+        isothermal_temp_C=payload.isothermal_temp_C,
+        isothermal_time_s=payload.isothermal_time_s,
+        enable_tempering=payload.enable_tempering,
+        tempering_temp_C=payload.tempering_temp_C,
+        tempering_time_min=payload.tempering_time_min,
+    )
+

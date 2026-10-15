@@ -56,6 +56,32 @@ export async function fetchSteelPhaseDiagram(steelId) {
   }
 }
 
+export async function fetchSteelTTT(steelId) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/steels/${steelId}/ttt`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn(`Failed to fetch steel ${steelId} TTT data:`, err);
+    return null;
+  }
+}
+
+export async function simulateThermalCycle(payload) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/heat-treatment/simulate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('Thermal cycle simulation failed:', err);
+    return null;
+  }
+}
+
 // Client-side fallback lever rule in case backend is offline during development
 function fallbackLeverRule(carbon_wt, temperature_C) {
   const c = Math.max(0.0, Math.min(6.67, Number(carbon_wt)));
